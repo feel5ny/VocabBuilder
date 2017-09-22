@@ -15,9 +15,8 @@ const ChildChildChildComponent = ({
     }}
   >
     <ChildChildChildChildComponent
-      
-      factor={factor}
-      RGB={RGB.map(color => Math.floor(color * factor))}
+     factor={factor}
+      RGB = {RGB.map(color => Math.floor(color*factor))}
     />
   </div>
 );

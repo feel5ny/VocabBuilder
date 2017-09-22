@@ -2,6 +2,7 @@ import React from 'react'
 import ChildChildComponent from './ChildChildComponent';
 
 
+
 const ChildComponent = ({
   RGB,
   factor,
@@ -11,12 +12,12 @@ const ChildComponent = ({
       height: '100%',
       width: '100%',
       padding: '40px',
-      backgroundColor: `rgb(${RGB.map((color) => Math.floor(color * factor)).join(',')})`,
+      backgroundColor: 'black', 
     }}
   >
     <ChildChildComponent
       factor={factor}
-      RGB={RGB.map(color => Math.floor(color * factor))}
+      RGB = {RGB.map(color => Math.floor(color*factor))}
     />
   </div>
 );

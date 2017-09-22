@@ -5,6 +5,7 @@ import UserInputComponent from './UserInputComponent';
 const ChildChildChildChildComponent = ({
   RGB,
   factor,
+  changeRootColor
 }) => (
   <div
     style={{
@@ -14,7 +15,8 @@ const ChildChildChildChildComponent = ({
       backgroundColor: `rgb(${RGB.map((color) => Math.floor(color * factor)).join(',')})`,
     }}
   >
-    <UserInputComponent />
+    <UserInputComponent 
+    />
   </div>
 );
 

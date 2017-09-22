@@ -1,8 +1,5 @@
-import React, { Component } from 'react';
-import {
-  BrowserRouter,
-  Route,
-} from 'react-router-dom';
+import React, {Component} from 'react';
+import {BrowserRouter, Route} from 'react-router-dom';
 import 'semantic-ui/dist/semantic.css';
 import WordLists from './Pages/WordLists';
 import WordList from './Pages/WordList';
@@ -11,26 +8,24 @@ import QuizSession from './Pages/QuizSession';
 import HugeApp from './Pages/HugeApp';
 import HeaderItem from './Components/HeaderItem';
 import ZigbangRoomList from './Practices/ZigbangRoomList';
+import {Provider} from 'react-redux';
+import store from './store';
 
 const routes = [
   {
     linkLabel: '단어장',
-    linkTo: '/word-lists',
-  },
-  {
+    linkTo: '/word-lists'
+  }, {
     linkLabel: 'Take a Quiz',
-    linkTo: '/quizes',
-  },
-  {
+    linkTo: '/quizes'
+  }, {
     linkLabel: '직방 리스트',
-    linkTo: '/zigbangroomlist',
-  },
-  {
+    linkTo: '/zigbangroomlist'
+  }, {
     linkLabel: '거대한 앱',
-    linkTo: '/hugeapp',
-  },
+    linkTo: '/hugeapp'
+  }
 ]
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -39,26 +34,27 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
-          <div className="ui attached stackable menu">
-            <div className="ui container">
-              {routes.map((route) => <HeaderItem
-                key={route.linkLabel}
-                linkTo={route.linkTo}
-                label={route.linkLabel}
-              />)}
+        <Provider store={store}>
+          <div>
+            <div className="ui attached stackable menu">
+              <div className="ui container">
+                {routes.map((route) => <HeaderItem
+                  key={route.linkLabel}
+                  linkTo={route.linkTo}
+                  label={route.linkLabel}/>)}
+              </div>
             </div>
-          </div>
 
-          <div className="ui divider hidden"></div>
-          <div className="ui hidden divider"></div>
-          <Route path="/quiz-session" component={QuizSession} />
-          <Route path="/quizes" component={Quizes} />
-          <Route path="/word-lists" component={WordLists} />
-          <Route path="/word-list/:wordListId" component={WordList} />
-          <Route path="/zigbangroomlist" component={ZigbangRoomList} />
-          <Route path="/hugeapp" component={HugeApp} />
-        </div>
+            <div className="ui divider hidden"></div>
+            <div className="ui hidden divider"></div>
+            <Route path="/quiz-session" component={QuizSession}/>
+            <Route path="/quizes" component={Quizes}/>
+            <Route path="/word-lists" component={WordLists}/>
+            <Route path="/word-list/:wordListId" component={WordList}/>
+            <Route path="/zigbangroomlist" component={ZigbangRoomList}/>
+            <Route path="/hugeapp" component={HugeApp}/>
+          </div>
+        </Provider>
       </BrowserRouter>
     );
   }

@@ -1,4 +1,6 @@
 import React from 'react'
+import {connect} from 'react-redux'
+import {changeColorAction, changeHeaderAction} from '../../action';
 
 const generateRandomRGB = () => {
   const randomR = Math.floor(Math.random() * 255)
@@ -18,23 +20,47 @@ const UserInputComponentStyle = {
   transform: 'translate(-50%, -50%)',
   display: 'flex',
   justifyContent: 'center',
-  alignItems: 'center',
+  alignItems: 'center'
 };
 
 class UserInputComponent extends React.Component {
   render() {
-    console.log(generateRandomRGB());
+    // console.log(generateRandomRGB());
     return (
-      <div
-        onClick={() => console.log(generateRandomRGB())}
-        style={UserInputComponentStyle}
-      >
-        <h1>
-          CHANGE ROOT COLOR!
-        </h1>
+      <div>
+        <div>
+          <input 
+          value = 
+            {this.props.textHeader}
+          onChange ={(text) => this.props.I_WATN_TO_CHANGE_TEXT(text.target.value)}
+          />
+        </div>
+        <div 
+          onClick={() => this.props.I_WATN_TO_CHANGE_COLOR()} 
+        style={UserInputComponentStyle}>
+          <h1 style ={{
+            color:"white",
+          }}>
+            {this.props.textHeader}
+          </h1>
+        </div>
       </div>
     );
   }
 }
 
-export default UserInputComponent;
+const mapStateToProps = (state) => {
+  return {
+    rootColor: state.rootColor,
+    textHeader: state.textHeader,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    I_WATN_TO_CHANGE_COLOR: () => dispatch(changeColorAction(generateRandomRGB())) ,
+    I_WATN_TO_CHANGE_TEXT: (text) => dispatch(changeHeaderAction(text)) 
+    // 내가 발생시키고 싶은 actions들을 객체로 리턴하는 합수
+  }
+}
+export default connect(mapStateToProps,mapDispatchToProps)(UserInputComponent);

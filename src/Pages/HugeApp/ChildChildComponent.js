@@ -3,8 +3,8 @@ import ChildChildChildComponent from './ChildChildChildComponent';
 
 
 const ChildChildComponent = ({
-  RGB,
   factor,
+  RGB,
 }) => (
   <div
     style={{
@@ -16,7 +16,7 @@ const ChildChildComponent = ({
   >
     <ChildChildChildComponent
       factor={factor}
-      RGB={RGB.map(color => Math.floor(color * factor))}
+      RGB = {RGB.map(color => Math.floor(color*factor))}
     />
   </div>
 );
